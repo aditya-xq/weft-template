@@ -28,8 +28,17 @@ jobs:
           x_consumer_secret: ${{ secrets.X_CONSUMER_SECRET }}
           x_access_token: ${{ secrets.X_ACCESS_TOKEN }}
           x_access_secret: ${{ secrets.X_ACCESS_SECRET }}
-      - name: Upload Weft output
-        uses: actions/upload-artifact@v4
-        with:
-            name: weft-output
-            path: out/
+
+      - name: Commit Weft output
+        run: |
+          git config user.name "weft-bot"
+          git config user.email "weft-bot@users.noreply.github.com"
+
+          # Only commit if out/ changed
+          if [ -n "$(git status --porcelain out/)" ]; then
+            git add out/
+            git commit -m "chore(weft): update daily GitHub summary"
+            git push
+          else
+            echo "No changes in out/, skipping commit"
+          fi
