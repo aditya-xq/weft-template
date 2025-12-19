@@ -1,37 +1,44 @@
-# .github/workflows/daily-github.yml
 name: Daily GitHub Summary to X
 
-# Run on schedule and allow manual runs
 on:
   schedule:
-    # Default: 03:30 UTC -> 09:00 IST. Edit cron as needed.
+    # Default: 03:30 UTC -> 09:00 IST
     - cron: '30 3 * * *'
   workflow_dispatch: {}
 
-# Minimal permissions principle
+# Required for committing back to the repo
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   post_summary:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository (only needed for config file)
+      - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Run Weft
-        # replace `@main` with whichever version you want to use, if not using the latest
         uses: aditya-xq/weft@main
         with:
-          # Path inside the repository to config used by Weft
           config_path: config/default.yml
           github_token: ${{ secrets.GITHUB_TOKEN }}
           x_consumer_key: ${{ secrets.X_CONSUMER_KEY }}
           x_consumer_secret: ${{ secrets.X_CONSUMER_SECRET }}
           x_access_token: ${{ secrets.X_ACCESS_TOKEN }}
           x_access_secret: ${{ secrets.X_ACCESS_SECRET }}
-      - name: Upload Weft output
-        uses: actions/upload-artifact@v4
-        with:
-            name: weft-output
-            path: out/
+
+      - name: Commit Weft output
+        run: |
+          git config user.name "weft-bot"
+          git config user.email "weft-bot@users.noreply.github.com"
+
+          # Only commit if out/ changed
+          if [ -n "$(git status --porcelain out/)" ]; then
+            git add out/
+            git commit -m "chore(weft): update daily GitHub summary"
+            git push
+          else
+            echo "No changes in out/, skipping commit"
+          fi

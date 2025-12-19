@@ -84,8 +84,6 @@ Expected outputs:
 * `out/summary.svg`
 * `out/summary.png`
 
-Paths may vary based on action updates.
-
 ---
 
 ## Recommended usage
