@@ -1,76 +1,120 @@
-# Weft — Quickstart Template
+# Weft Quickstart Template
 
-This repository is a **template** to onboard GitHub repositories to **Weft** (the daily GitHub summary action).
+This repository is a **template** for setting up **Weft**, a GitHub Action that turns your daily GitHub activity into a visual summary and optionally publishes it to X (Twitter).
 
-> 🧵 **Weft** collects GitHub activity, renders a visual summary, and (optionally) publishes it to X/Twitter.
+**What Weft does**
 
----
-
-## Quickstart — get a daily summary in 3 steps
-
-1. Click **Use this template** → create a new repository for your account.
-2. Add required repository **secrets** (see below).
-3. Enable Actions and optionally edit `config/default.yml` to customize. The scheduled job will run automatically.
+* Collects GitHub activity
+* Renders a clean visual snapshot
+* Publishes to X on a schedule or runs in preview mode
 
 ---
 
-## Required repository secrets
+## Quickstart
 
-Create these repository secrets (Repository settings → Secrets → Actions):
+| Step | Action                                              |
+| ---- | --------------------------------------------------- |
+| 1    | Click **Use this template** to create your repo     |
+| 2    | Add required repository secrets                     |
+| 3    | Enable GitHub Actions and edit `config/default.yml` |
 
-- `GITHUB_TOKEN` — (usually provided by GitHub automatically; keep it)
-- `X_CONSUMER_KEY` — X/Twitter Consumer Key
-- `X_CONSUMER_SECRET` — X/Twitter Consumer Secret
-- `X_ACCESS_TOKEN` — X/Twitter Access Token
-- `X_ACCESS_SECRET` — X/Twitter Access Secret
-
-> If you only want to preview and not publish, use `config/dry-run.yml` (it sets `twitter.publish: false`).
+Once enabled, the daily workflow runs automatically.
 
 ---
 
-## Workflow(s)
+## Required secrets
 
-- `.github/workflows/daily-github.yml` — scheduled daily run (default 03:30 UTC).
-- `.github/workflows/manual-run.yml` — manual workflow_dispatch for testing/preview.
+Add these under **Repository Settings → Secrets → Actions**.
 
-By default, the workflows reference `aditya-xq/weft@main`.
+| Secret name         | Description                            |
+| ------------------- | -------------------------------------- |
+| `GITHUB_TOKEN`      | GitHub token (auto-provided by GitHub) |
+| `X_CONSUMER_KEY`    | X API consumer key                     |
+| `X_CONSUMER_SECRET` | X API consumer secret                  |
+| `X_ACCESS_TOKEN`    | X access token                         |
+| `X_ACCESS_SECRET`   | X access secret                        |
 
----
-
-## Customize the config
-
-Open `config/default.yml` and update:
-
-- `github.username` — set to your GitHub username.
-- `runtime.timezone` — change if you're not in Asia/Kolkata.
-- Visual theme values and `time_window.duration`.
-
-Save and commit; the next run will use the updated config file.
+**Preview only?**
+Use `config/dry-run.yml`. It disables publishing.
 
 ---
 
-## Dry runs & debugging
+## Workflows included
 
-To preview output without publishing:
+| File               | Purpose                                    |
+| ------------------ | ------------------------------------------ |
+| `daily-github.yml` | Scheduled daily run (03:30 UTC by default) |
+| `manual-run.yml`   | Manual preview and debugging               |
 
-1. Run the **Manual / Preview: Weft** workflow from the Actions tab and choose `config/dry-run.yml`.
-2. Or edit `config/default.yml` and set `twitter.publish: false`.
+By default, workflows use:
 
-Dry run outputs are typically written to `out/summary.svg` & `out/summary.png` (see the project README in the action repo for exact locations).
+```yaml
+uses: aditya-xq/weft@main
+```
+
+You can pin to a version tag when available.
 
 ---
 
-## Advanced tips
+## Configuration
 
-- Pin the action to `aditya-xq/weft@main` for the latest release. When a new major is ready, release `v2` and update template changelog.
-- If you prefer to use an organization-level repo, this template can be used as-is.
-- For privacy, run with `twitter.publish: false` until you confirm visuals and metrics.
+Edit `config/default.yml`.
+
+| Key                    | What to change            |
+| ---------------------- | ------------------------- |
+| `github.username`      | Your GitHub username      |
+| `runtime.timezone`     | Your local timezone       |
+| `time_window.duration` | Example: `24h`            |
+| `visual.theme`         | Colors and layout         |
+| `twitter.publish`      | Enable or disable posting |
+
+Changes apply on the next run.
+
+---
+
+## Dry runs and previews
+
+Two ways to preview without publishing:
+
+1. Run **Manual / Preview: Weft** from the Actions tab
+   Select `config/dry-run.yml`
+2. Set `twitter.publish: false` in `config/default.yml`
+
+Expected outputs:
+
+* `out/summary.svg`
+* `out/summary.png`
+
+Paths may vary based on action updates.
+
+---
+
+## Recommended usage
+
+| Goal             | Recommendation           |
+| ---------------- | ------------------------ |
+| First-time setup | Start with `dry-run.yml` |
+| Public posting   | Enable `twitter.publish` |
+| Stability        | Pin to a tagged release  |
+| Privacy          | Keep publishing disabled |
 
 ---
 
 ## Troubleshooting
 
-If the action fails:
-- Confirm secrets are set and valid.
-- Use the manual run with `dry-run` config to generate artifacts without publishing.
-- Check workflow logs for error messages; common issues are token permissions or wrong `github.username`.
+If a run fails, check the following:
+
+* All required secrets are present and valid
+* `github.username` is correct
+* The workflow logs in the Actions tab
+* Run the manual preview workflow for isolation
+
+Most failures are caused by missing secrets or incorrect usernames.
+
+---
+
+## Related project
+
+This template uses the Weft action:
+
+* [https://github.com/aditya-xq/weft](https://github.com/aditya-xq/weft)
