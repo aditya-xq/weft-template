@@ -1,0 +1,25 @@
+# config/dry-run.yml
+# Safe dry-run: renders files but does NOT publish to X/Twitter.
+time_window:
+  duration: "24h"
+
+github:
+  username: "aditya-xq"
+
+visual:
+  width: 1200
+  height: 675
+  theme:
+    background: "#0f172a"
+    panel: "#1e293b"
+    text: "#f8fafc"
+    subtext: "#94a3b8"
+    accent: "#38bdf8"
+    border: "#334155"
+
+twitter:
+  publish: false
+  message_template: "[DRY-RUN] Preview: A snapshot of my GitHub activity."
+
+runtime:
+  timezone: "Asia/Kolkata"

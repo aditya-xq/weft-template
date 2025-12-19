@@ -1,0 +1,32 @@
+# .github/workflows/daily-github.yml
+name: Daily GitHub Summary to X
+
+# Run on schedule and allow manual runs
+on:
+  schedule:
+    # Default: 03:30 UTC -> 09:00 IST. Edit cron as needed.
+    - cron: '30 3 * * *'
+  workflow_dispatch: {}
+
+# Minimal permissions principle
+permissions:
+  contents: read
+
+jobs:
+  post_summary:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository (only needed for config file)
+        uses: actions/checkout@v4
+
+      - name: Run Weft
+        # replace `@main` with whichever version you want to use, if not using the latest
+        uses: aditya-xq/weft@main
+        with:
+          # Path inside the repository to config used by Weft
+          config_path: config/default.yml
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          x_consumer_key: ${{ secrets.X_CONSUMER_KEY }}
+          x_consumer_secret: ${{ secrets.X_CONSUMER_SECRET }}
+          x_access_token: ${{ secrets.X_ACCESS_TOKEN }}
+          x_access_secret: ${{ secrets.X_ACCESS_SECRET }}

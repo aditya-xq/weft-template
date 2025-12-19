@@ -1,0 +1,30 @@
+# .github/workflows/manual-run.yml
+name: Manual run for Weft
+
+on:
+  workflow_dispatch:
+    inputs:
+      config:
+        description: 'Which config to use (path)'
+        required: false
+        default: 'config/dry-run.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Weft (preview / dry-run recommended)
+        uses: aditya-xq/weft@main
+        with:
+          config_path: ${{ github.event.inputs.config }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          x_consumer_key: ${{ secrets.X_CONSUMER_KEY }}
+          x_consumer_secret: ${{ secrets.X_CONSUMER_SECRET }}
+          x_access_token: ${{ secrets.X_ACCESS_TOKEN }}
+          x_access_secret: ${{ secrets.X_ACCESS_SECRET }}

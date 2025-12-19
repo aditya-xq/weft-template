@@ -1,0 +1,34 @@
+# config/default.yml
+# Default configuration for Weft. Edit values as needed.
+time_window:
+  # Examples: "24h". Keep as a string.
+  duration: "24h"
+
+github:
+  # GitHub username to collect metrics for (required)
+  username: "aditya-xq"
+
+visual:
+  # Output image size (px)
+  width: 1200
+  height: 675
+
+  theme:
+    # "Midnight Pro" palette, tweak as desired
+    background: "#0f172a"
+    panel: "#1e293b"
+    text: "#f8fafc"
+    subtext: "#94a3b8"
+    accent: "#38bdf8"
+    border: "#334155"
+
+twitter:
+  # When true, Weft will attempt to publish to X/Twitter using the provided API keys.
+  publish: true
+
+  # Caption template for the post. Keep it simple — Weft may replace placeholders in future.
+  message_template: "A snapshot of my GitHub activity in the last 24 hours. Autocrafted and published via Weft."
+
+runtime:
+  # Runner timezone used for display and scheduling conversions
+  timezone: "Asia/Kolkata"
