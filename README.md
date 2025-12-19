@@ -1,5 +1,7 @@
 # Weft Quickstart Template
 
+![Latest Summary](out/summary.svg)
+
 This repository is a **template** for setting up **Weft**, a GitHub Action that turns your daily GitHub activity into a visual summary and optionally publishes it to X (Twitter).
 
 **What Weft does**

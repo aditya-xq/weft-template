@@ -10,7 +10,7 @@ on:
         default: 'config/dry-run.yml'
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   preview:
