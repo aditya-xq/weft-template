@@ -24,11 +24,10 @@ Once enabled, the daily workflow runs automatically.
 
 ## Required secrets
 
-Add these under **Repository Settings → Secrets → Actions**.
+Add these under **Repository Settings → Secrets → Actions**. You can get them from your [X developer portal dashboard](https://developer.x.com/en/portal/dashboard)
 
 | Secret name         | Description                            |
 | ------------------- | -------------------------------------- |
-| `GITHUB_TOKEN`      | GitHub token (auto-provided by GitHub) |
 | `X_CONSUMER_KEY`    | X API consumer key                     |
 | `X_CONSUMER_SECRET` | X API consumer secret                  |
 | `X_ACCESS_TOKEN`    | X access token                         |

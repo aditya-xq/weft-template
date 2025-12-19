@@ -1,5 +1,5 @@
 # .github/workflows/manual-run.yml
-name: Manual run for Weft
+name: Manual dry run for Weft
 
 on:
   workflow_dispatch:
