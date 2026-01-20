@@ -1,4 +1,4 @@
-name: Weekly GitHub Summary to X
+name: GitHub Summary to X
 
 on:
   schedule:
