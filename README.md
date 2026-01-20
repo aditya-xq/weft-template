@@ -2,7 +2,7 @@
 
 ![Latest Summary](out/summary.svg)
 
-This repository is a **template** for setting up **Weft**, a GitHub Action that turns your daily GitHub activity into a visual summary and optionally publishes it to X (Twitter).
+This repository is a **template** for setting up **Weft**, a GitHub Action that turns your GitHub activity into a visual summary and optionally publishes it to X (Twitter).
 
 **What Weft does**
 
@@ -20,7 +20,7 @@ This repository is a **template** for setting up **Weft**, a GitHub Action that 
 | 2    | Add required repository secrets                     |
 | 3    | Enable GitHub Actions and edit `config/default.yml` |
 
-Once enabled, the daily workflow runs automatically.
+Once enabled, the daily/weekly workflow runs automatically.
 
 ---
 
