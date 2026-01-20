@@ -2,7 +2,7 @@
 # Default configuration for Weft. Edit values as needed.
 time_window:
   # Examples: "24h". Keep as a string.
-  duration: "24h"
+  duration: "168h"
 
 github:
   # GitHub username to collect metrics for (required)
