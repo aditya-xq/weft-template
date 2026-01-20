@@ -27,7 +27,7 @@ twitter:
   publish: true
 
   # Caption template for the post. Keep it simple — Edit this for what you want to say about your GitHub activity.
-  message_template: "A snapshot of my GitHub activity in the last 24 hours. Generated via Weft. Set it up for your account: https://github.com/aditya-xq/weft-template"
+  message_template: "Snapshot of my GitHub activity in the last week. Generated and published automatically via Weft. Set it up for your account: https://github.com/aditya-xq/weft-template"
 
 runtime:
   # Runner timezone used for display and scheduling conversions
