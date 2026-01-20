@@ -1,9 +1,9 @@
-name: Daily GitHub Summary to X
+name: Weekly GitHub Summary to X
 
 on:
   schedule:
     # Default: 03:30 UTC -> 09:00 IST
-    - cron: '30 3 * * *'
+    - cron: '30 3 * * 1'   # Every Monday at 03:30 UTC (09:00 IST)
   workflow_dispatch: {}
 
 # Required for committing back to the repo
