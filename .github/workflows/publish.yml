@@ -37,7 +37,7 @@ jobs:
           # Only commit if out/ changed
           if [ -n "$(git status --porcelain out/)" ]; then
             git add out/
-            git commit -m "chore(weft): update daily GitHub summary"
+            git commit -m "chore(weft): update weekly GitHub summary"
             git push
           else
             echo "No changes in out/, skipping commit"
